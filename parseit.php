@@ -52,7 +52,7 @@ function getDirectory( $path = '.', $level = 0 ){
 
 } 
 
-echo "<div style=\"float:left;height:500px;overflow-y:scroll\">";
+echo "<div style=\"float:left;height:100%;overflow-y:scroll\">";
 
 getDirectory( "/Users/jae/OLAPIC/Documentation/" ); 
 
@@ -77,14 +77,15 @@ foreach(listFiles() as $val) {
 
 // Convert file
 function convert($filename){
-	$Parsedown = new Parsedown();
 
-	$file = file_get_contents($filename);
+    $line = 'ruby redcarpet.rb ' . $filename;
 
-	return $Parsedown->text($file);
+    $cmd = shell_exec($line);
+
+	return $cmd;
 }
 
-echo ($_GET['convert']);
+echo $_GET['convert'];
 
 echo '<br>';
 
